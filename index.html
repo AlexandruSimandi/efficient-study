@@ -14,52 +14,66 @@
 </head>
 
 <body>
-    <div style="margin-bottom: 30px; margin-top: -32px;">
-        <nav class="teal lighten-1" style="padding-top: 22px;">
-            <h5 class="center-align">Efficient study</h5>
-        </nav>
+    <div class="teal lighten-1" style="margin-bottom: 20px;">
+		<h4 class="white-text center-align">Efficient study</h4>
     </div>
-    <div class="container">
-        <div class="card-panel">
+    <main>
+		<div class="container">
+			<div class="card-panel">
+				<div class="row">
+					<div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="After how many minutes do you start feeling distracted or feel like it's not working anymore?">
+						<i class="material-icons prefix">assignment</i>
+						<p class="range-field">
+							<input id="studyTime" type="range" min="0" max="180" value="30"/>
+						</p>
+						<label style="margin-top: -10px;">Study interval duration in minutes</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="How long does the break need to be in order to feel fresh? Don't cheat!">
+					   <i class="material-icons prefix">pause_circle_outline</i>
+						<p class="range-field">
+							<input id="pauseTime" type="range" min="0" max="30" value="5" />
+						</p>
+						<label style="margin-top: -10px;">Break interval duration in minutes</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s6 offset-s3 center-align">
+						<a id="setTimer" href="#!" class="btn-large waves-effect waves-light center">Set timer</a>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<div class="row" style="height: 200px;">
+					<div class="center-align">
+						<h2 id="status">Study time</h2>
+					</div>
+					<div class="col m12 l8 offset-l2 center-align">
+						<div class="col s3"><h3 class="timerH3" id="hours">0h</h3></div>
+						<div class="col s1"><h3 class="timerH3">:</h3></div>
+						<div class="col s4"><h3 class="timerH3" id="minutes">30m</h3></div>
+						<div class="col s1"><h3 class="timerH3">:</h3></div>
+						<div class="col s3"><h3 class="timerH3" id="seconds">0s</h3></div>
+					</div>
+	<!--            	nice loading bar here-->
+				</div>
+			</div>
+		</div>
+    </main>
+    <footer class="page-footer teal">
+          <div class="container">
             <div class="row">
-                <div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="After how many minutes do you start feeling distracted or feel like it's not working anymore?">
-                    <i class="material-icons prefix">assignment</i>
-					<p class="range-field">
-						<input id="studyTime" type="range" min="0" max="180" value="30"/>
-					</p>
-                    <label style="margin-top: -10px;">Study interval duration in minutes</label>
-                </div>
+              <div class="col l6 s12">
+                <p class="grey-text text-lighten-4"></p>
+              </div>
             </div>
-            <div class="row">
-                <div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="How long does the break need to be in order to feel fresh? Don't cheat!">
-                   <i class="material-icons prefix">pause_circle_outline</i>
-					<p class="range-field">
-						<input id="pauseTime" type="range" min="0" max="30" value="5" />
-					</p>
-                    <label style="margin-top: -10px;">Break interval duration in minutes</label>
-                </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Alexandru Simandi
             </div>
-            <div class="row">
-                <div class="col s6 offset-s3 center-align">
-                    <a id="setTimer" href="#!" class="btn-large waves-effect waves-light center">Set timer</a>
-                </div>
-            </div>
-            <div class="divider"></div>
-            <div class="row" style="height: 200px;">
-            	<div class="center-align">
-            		<h2 id="status">Study time</h2>
-            	</div>
-            	<div class="col m12 l8 offset-l2 center-align">
-					<div class="col s3"><h3 id="hours">0h</h3></div>
-					<div class="col s1"><h3>:</h3></div>
-					<div class="col s4"><h3 id="minutes">30m</h3></div>
-					<div class="col s1"><h3>:</h3></div>
-					<div class="col s3"><h3 id="seconds">0s</h3></div>
-            	</div>
-<!--            	nice loading bar here-->
-            </div>
-        </div>
-    </div>
+          </div>
+        </footer>
 
 </body>
 

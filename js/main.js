@@ -113,18 +113,18 @@ function loadEvents(){
 function updateTime(element, value) {
 	var secondsH1 = document.getElementById(element);
 	$(secondsH1).animate({
-		marginTop: -21.5,
+		marginTop: -20,
 		opacity: 0.0
 	}, 200, 'swing', function(){});
 
 	setTimeout(function(){
 		secondsH1.innerHTML = value + element.charAt(0);
 		$(secondsH1).animate({
-			marginTop: 81.5,
+			marginTop: 20,
 			opacity: 0.5
 		}, 1, 'linear', function(){});
 		$(secondsH1).animate({
-			marginTop: 31.5,
+			marginTop: 0,
 			opacity: 1.0
 		}, 200, 'swing', function(){});
 	}, 200);
