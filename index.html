@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <title>Study</title>
+</head>
+
+<body>
+    <div style="margin-bottom: 30px; margin-top: -32px;">
+        <nav class="teal lighten-1" style="padding-top: 22px;">
+            <h5 class="center-align">Efficient study</h5>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="After how many minutes do you start feeling distracted or feel like it's not working anymore?">
+                    <i class="material-icons prefix">assignment</i>
+					<p class="range-field">
+						<input id="password" type="range" id="test5" min="0" max="180" />
+					</p>
+                    <label style="margin-top: -10px;">Study interval duration in minutes</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="How long does the break need to be in order to feel fresh? Don't cheat!">
+                   <i class="material-icons prefix">pause_circle_outline</i>
+					<p class="range-field">
+						<input id="password" type="range" id="test5" min="0" max="30" />
+					</p>
+                    <label style="margin-top: -10px;">Break interval duration in minutes</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 offset-s3 center-align">
+                    <a href="#!" class="btn-large waves-effect waves-light center">Set timer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
