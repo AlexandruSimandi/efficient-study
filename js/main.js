@@ -18,15 +18,29 @@ function loadEvents(){
 		var minutes = studyTime % 60;
 		var seconds = 0;
 
+		var oldHours = hours;
+		var oldMinutes = minutes;
+
 		document.getElementById('seconds').innerHTML = '0s';
 		document.getElementById('minutes').innerHTML = minutes + 'm';
 		document.getElementById('hours').innerHTML = hours + 'h';
+
+		var isStudyTime = true;
 
 		interval = setInterval(function(){
 			if(seconds == 0 ){
 				if(minutes == 0){
 					if(hours == 0){
-						//switch to pause timer
+						if(isStudyTime){
+							isStudyTime = false;
+							minutes = pauseTime;
+							document.getElementById('status').innerHTML = 'Break time!';
+						} else {
+							isStudyTime = true;
+							hours = oldHours;
+							minutes = oldMinutes;
+							document.getElementById('status').innerHTML = 'Study time';
+						}
 					} else {
 						hours--;
 						minutes = 59;
