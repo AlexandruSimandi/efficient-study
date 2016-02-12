@@ -5,11 +5,15 @@ $(document).ready(function() {
 });
 
 function loadEvents(){
+//	var sound = new buzz.sound('/sound/bell', {formats: ['mp3', 'wav']});
+	var audio = new Audio('sound/bell.mp3');
 	var alreadyFired = false;
 	var interval;
 	$('#setTimer').click(function(){
 		if(alreadyFired){
 			clearInterval(interval);
+		} else {
+			Materialize.toast('Best of luck studying!',6000);
 		}
 		var studyTime = parseInt(document.getElementById('studyTime').value);
 		var pauseTime = parseInt(document.getElementById('pauseTime').value);
@@ -34,13 +38,16 @@ function loadEvents(){
 						if(isStudyTime){
 							isStudyTime = false;
 							minutes = pauseTime;
-							document.getElementById('status').innerHTML = 'Break time!';
+							document.getElementById('status').innerHTML = 'Break time';
+							Materialize.toast('Take a break, do something fun, come back when timer ends break',14000);
 						} else {
 							isStudyTime = true;
 							hours = oldHours;
 							minutes = oldMinutes;
 							document.getElementById('status').innerHTML = 'Study time';
+							Materialize.toast('Hope you enjoyed your break, time to get back to study',14000);
 						}
+						audio.play();
 					} else {
 						hours--;
 						minutes = 59;
@@ -91,7 +98,7 @@ function loadEvents(){
 			var secondsH1 = $('#seconds');
 			secondsH1.stop(true, true);
 			secondsH1.animate({
-				marginTop: 0,
+				//marginTop: 0,
 				opacity: 1.0
 			}, 1, function(){});
 		}
@@ -113,18 +120,18 @@ function loadEvents(){
 function updateTime(element, value) {
 	var secondsH1 = document.getElementById(element);
 	$(secondsH1).animate({
-		marginTop: -20,
+		//marginTop: -20,
 		opacity: 0.0
 	}, 200, 'swing', function(){});
 
 	setTimeout(function(){
 		secondsH1.innerHTML = value + element.charAt(0);
 		$(secondsH1).animate({
-			marginTop: 20,
+			//marginTop: 20,
 			opacity: 0.5
 		}, 1, 'linear', function(){});
 		$(secondsH1).animate({
-			marginTop: 0,
+			//marginTop: 0,
 			opacity: 1.0
 		}, 200, 'swing', function(){});
 	}, 200);
