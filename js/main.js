@@ -91,7 +91,7 @@ function loadEvents(){
 			var secondsH1 = $('#seconds');
 			secondsH1.stop(true, true);
 			secondsH1.animate({
-				marginTop: 31.5,
+				marginTop: 0,
 				opacity: 1.0
 			}, 1, function(){});
 		}
