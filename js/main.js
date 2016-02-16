@@ -12,6 +12,7 @@ function loadEvents(){
 	$('#setTimer').click(function(){
 		if(alreadyFired){
 			clearInterval(interval);
+			document.getElementById('status').innerHTML = 'Study time';
 		} else {
 			Materialize.toast('Best of luck studying!',6000);
 		}
@@ -25,11 +26,15 @@ function loadEvents(){
 		var oldHours = hours;
 		var oldMinutes = minutes;
 
+		var oldPauseTime = pauseTime;
+
 		document.getElementById('seconds').innerHTML = '0s';
 		document.getElementById('minutes').innerHTML = minutes + 'm';
 		document.getElementById('hours').innerHTML = hours + 'h';
 
 		var isStudyTime = true;
+
+		$('#loadingBar').width = 0;
 
 		interval = setInterval(function(){
 			if(seconds == 0 ){
@@ -63,6 +68,13 @@ function loadEvents(){
 				seconds--;
 			}
 			updateTime('seconds', seconds);
+			if(isStudyTime){
+				$('#progressBar').css('width', 100 - Math.floor((hours * 3600 + minutes * 60 + seconds) / (oldHours * 3600 + oldMinutes * 60) * 100) + '%');
+//				console.log(100 - Math.floor((hours * 3600 + minutes * 60 + seconds) / (oldHours * 3600 + oldMinutes * 60) * 100));
+			} else {
+				$('#progressBar').css('width', 100 - Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60) * 100) + '%');
+				$('#progressBar').width = Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60));
+			}
 		},1000);
 
 		alreadyFired = true;
