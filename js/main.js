@@ -1,14 +1,119 @@
+var interval;
+var alreadyFired = false;
+var audio = new Audio('sound/bell.mp3');
+
 $(document).ready(function() {
-//	$(".button-collapse").sideNav();
-//	$('select').material_select();
+	loadSavedState();
 	loadEvents();
 });
 
+function loadSavedState(){
+	var savedState = JSON.parse(localStorage.getItem('savedState'));
+
+	if(savedState != null){
+		alreadyFired = true;
+
+		if (savedState.isStudyTime) {
+			document.getElementById('status').innerHTML = 'Study time';
+		} else {
+			document.getElementById('status').innerHTML = 'Break time';
+		}
+
+		$('#studyTime').attr('value',savedState.studyTime);
+		$('#pauseTime').attr('value',savedState.pauseTime);
+		$('#studyTimeText').html(savedState.studyTime);
+		$('#pauseTimeText').html(savedState.pauseTime);
+
+		var hours = savedState.hours;
+		var minutes = savedState.minutes;
+		var seconds = savedState.seconds;
+
+		var oldHours = savedState.oldHours;
+		var oldMinutes = savedState.oldMinutes;
+
+		var oldPauseTime = savedState.pauseTime;
+
+		document.getElementById('seconds').innerHTML = savedState.seconds + 's';
+		document.getElementById('minutes').innerHTML = savedState.minutes + 'm';
+		document.getElementById('hours').innerHTML = savedState.hours + 'h';
+
+		var isStudyTime = savedState.isStudyTime;
+
+		interval = setInterval(function(){
+			if(seconds == 0 ){
+				if(minutes == 0){
+					if(hours == 0){
+						if(isStudyTime){
+							isStudyTime = false;
+							minutes = oldPauseTime;
+							document.getElementById('status').innerHTML = 'Break time';
+							Materialize.toast('Take a break, do something fun, come back when timer ends break',14000);
+						} else {
+							isStudyTime = true;
+							hours = oldHours;
+							minutes = oldMinutes;
+							document.getElementById('status').innerHTML = 'Study time';
+							Materialize.toast('Hope you enjoyed your break, time to get back to study',14000);
+						}
+						audio.play();
+					} else {
+						hours--;
+						minutes = 59;
+						seconds = 59;
+					}
+					updateTime('hours', hours);
+				} else {
+					minutes--;
+					seconds = 59;
+				}
+				updateTime('minutes', minutes);
+			} else {
+				seconds--;
+			}
+			updateTime('seconds', seconds);
+			if(isStudyTime){
+				$('#progressBar').css('width', 100 - Math.floor((hours * 3600 + minutes * 60 + seconds) / (oldHours * 3600 + oldMinutes * 60) * 100) + '%');
+//				console.log(100 - Math.floor((hours * 3600 + minutes * 60 + seconds) / (oldHours * 3600 + oldMinutes * 60) * 100));
+			} else {
+				$('#progressBar').css('width', 100 - Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60) * 100) + '%');
+				//$('#progressBar').width = Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60));
+			}
+
+			setTimeOnLocalStorage(isStudyTime, savedState.studyTime, savedState.pauseTime, hours, minutes, seconds, oldHours, oldMinutes);
+
+		},1000);
+
+
+	}
+}
+
+function setTimeOnLocalStorage(isStudyTime, studyTime, pauseTime, hours, minutes, seconds, oldHours, oldMinutes){
+	var savedState = new Object();
+
+	savedState.isStudyTime = isStudyTime;
+
+	savedState.studyTime = studyTime;
+	savedState.pauseTime = pauseTime;
+
+	savedState.hours = hours;
+	savedState.minutes = minutes;
+	savedState.seconds = seconds;
+
+	savedState.oldHours = oldHours;
+	savedState.oldMinutes = oldMinutes;
+
+	localStorage.setItem('savedState', JSON.stringify(savedState));
+}
+
 function loadEvents(){
-//	var sound = new buzz.sound('/sound/bell', {formats: ['mp3', 'wav']});
-	var audio = new Audio('sound/bell.mp3');
-	var alreadyFired = false;
-	var interval;
+	$('#studyTime').change(function(){
+		document.getElementById('studyTimeText').innerHTML = document.getElementById('studyTime').value;
+	});
+
+	$('#pauseTime').change(function(){
+		document.getElementById('pauseTimeText').innerHTML = document.getElementById('pauseTime').value;
+	});
+
 	$('#setTimer').click(function(){
 		if(alreadyFired){
 			clearInterval(interval);
@@ -73,12 +178,27 @@ function loadEvents(){
 //				console.log(100 - Math.floor((hours * 3600 + minutes * 60 + seconds) / (oldHours * 3600 + oldMinutes * 60) * 100));
 			} else {
 				$('#progressBar').css('width', 100 - Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60) * 100) + '%');
-				$('#progressBar').width = Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60));
+				//$('#progressBar').width = Math.floor((minutes * 60 + seconds) / (oldPauseTime * 60));
 			}
+
+			setTimeOnLocalStorage(isStudyTime, studyTime, pauseTime, hours, minutes, seconds, oldHours, oldMinutes);
+
 		},1000);
 
 		alreadyFired = true;
 
+	});
+
+	$('#clearTimer').click(function(){
+		if(alreadyFired){
+			localStorage.clear();
+			clearInterval(interval);
+			document.getElementById('status').innerHTML = 'Study time';
+			document.getElementById('seconds').innerHTML = '0s';
+			document.getElementById('minutes').innerHTML = '0m';
+			document.getElementById('hours').innerHTML = '0h';
+			$('#progressBar').css('width','0%');
+		}
 	});
 
 	//////////////////////////////
