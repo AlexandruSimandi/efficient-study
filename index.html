@@ -30,28 +30,28 @@
 		<div class="container">
 			<div class="card-panel">
 				<div class="row">
-					<div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="After how many minutes do you start feeling distracted or feel like it's not working anymore?">
+					<div class="input-field col s12 m8 offset-m2 l6 offset-l3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="After how many minutes do you start feeling distracted or feel like it's not working anymore?">
 						<i class="material-icons prefix">assignment</i>
 						<p class="range-field">
-							<input id="studyTime" type="range" min="0" max="180" value="30"/>
+							<input id="studyTime" type="range" min="20" max="180" value="30"/>
 						</p>
 						<label>Study interval duration in minutes : <span id="studyTimeText">30</span></label>
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s12 m6 offset-m3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="How long does the break need to be in order to feel refreshed? Don't cheat!">
+					<div class="input-field col s12 m8 offset-m2 l6 offset-l3 tooltipped" data-position="bottom" data-delay="100" data-tooltip="How long does the break need to be in order to feel refreshed? Don't cheat!">
 					   <i class="material-icons prefix">pause_circle_outline</i>
 						<p class="range-field">
-							<input id="pauseTime" type="range" min="0" max="30" value="5" />
+							<input id="pauseTime" type="range" min="5" max="30" value="5" />
 						</p>
 						<label>Break interval duration in minutes : <span id="pauseTimeText">5</span></label>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col s6 offset-s3 center-align">
-						<a id="setTimer" href="#!" class="btn-large waves-effect waves-light center">Set timer</a>
-						<a id="clearTimer" href="#!" class="btn-large waves-effect waves-light center">Clear</a>
+					<div class="col s12 l6 offset-l3 center-align">
+						<a id="setTimer" href="#!" class="btn-large waves-effect waves-light center">Start timer</a>
+						<a id="clearTimer" href="#!" class="btn-large waves-effect waves-light center">Reset</a>
 					</div>
 				</div>
 				<div class="divider"></div>
@@ -59,7 +59,7 @@
 					<div class="center-align">
 						<h3 id="status">Study time</h3>
 					</div>
-					<div class="col m12 l8 offset-l2 center-align">
+					<div class="col m12 l6 offset-l3 center-align">
 						<div class="col s3"><h3 class="timerH3" id="hours">0h</h3></div>
 						<div class="col s1"><h3 class="timerH3">:</h3></div>
 						<div class="col s4"><h3 class="timerH3" id="minutes">30m</h3></div>
@@ -67,7 +67,7 @@
 						<div class="col s3"><h3 class="timerH3" id="seconds">0s</h3></div>
 					</div>
 <!--nice loading bar here-->
-					<div class="progress col s6 offset-s3">
+					<div class="progress col l6 offset-l3 m12 s12">
 						<div id="progressBar" class="determinate"></div>
 					</div>
 				</div>
