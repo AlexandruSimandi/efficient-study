@@ -23,9 +23,8 @@
 </head>
 
 <body>
-    <div class="teal lighten-1" style="margin-bottom: 20px;">
+    <div id="title" class="teal lighten-1">
 		<h4 class="white-text center-align">Efficient study</h4>
-
     </div>
     <main>
 		<div class="container">
@@ -36,7 +35,7 @@
 						<p class="range-field">
 							<input id="studyTime" type="range" min="0" max="180" value="30"/>
 						</p>
-						<label style="margin-top: -10px;">Study interval duration in minutes : <span id="studyTimeText">30</span></label>
+						<label>Study interval duration in minutes : <span id="studyTimeText">30</span></label>
 					</div>
 				</div>
 				<div class="row">
@@ -45,7 +44,7 @@
 						<p class="range-field">
 							<input id="pauseTime" type="range" min="0" max="30" value="5" />
 						</p>
-						<label style="margin-top: -10px;">Break interval duration in minutes : <span id="pauseTimeText">5</span></label>
+						<label>Break interval duration in minutes : <span id="pauseTimeText">5</span></label>
 					</div>
 				</div>
 
@@ -56,7 +55,7 @@
 					</div>
 				</div>
 				<div class="divider"></div>
-				<div class="row" style="height: 200px;">
+				<div class="row">
 					<div class="center-align">
 						<h3 id="status">Study time</h3>
 					</div>
@@ -69,7 +68,7 @@
 					</div>
 <!--nice loading bar here-->
 					<div class="progress col s6 offset-s3">
-						<div id="progressBar" class="determinate" style="width: 0%"></div>
+						<div id="progressBar" class="determinate"></div>
 					</div>
 				</div>
 			</div>

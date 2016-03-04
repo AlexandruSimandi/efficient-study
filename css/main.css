@@ -2,16 +2,29 @@
 	z-index: 100;
 }
 
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	background-color: #f2f2f2;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+	flex: 1 0 auto;
+}
 
 .timerH3 {
 	margin-top:0px;
+}
+
+#title {
+	margin-bottom: 20px;
+}
+
+.input-field label {
+	margin-top: -10px;
+}
+
+#progressBar {
+	width: 0%;
 }
